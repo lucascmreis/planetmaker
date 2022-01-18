@@ -1,4 +1,4 @@
-import './styles/App.css';
+import './styles/global.scss';
 import { RoutesComponent } from './routes';
 
 function App() {
