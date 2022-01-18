@@ -1,7 +1,8 @@
 import './styles/global.scss';
+
 import { RoutesComponent } from './routes';
 
-function App() {
+const App = () => {
   return (
     <RoutesComponent />
   );
