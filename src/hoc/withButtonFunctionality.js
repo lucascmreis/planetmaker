@@ -1,6 +1,9 @@
-export const withButtonFunctionality = (Component, config) => {
-    console.log('config', config)
+export const withButtonFunctionality = (WrappedComponent, config) => {
+
+    const defaultConfig = {
+        onClick: () => alert('quando não passo nada, isso é o que vem direto do hoc por default')
+    }
     return props => {
-        return <Component  onClick={()=> alert('quando não passo nada, isso é o que vem direto do hoc por default')} {...config }{...props} />
+        return <WrappedComponent {...defaultConfig} {...config }{...props} />
       }
 }

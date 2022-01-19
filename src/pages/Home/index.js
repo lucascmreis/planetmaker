@@ -23,10 +23,10 @@ export const Home = () => {
         <h1>Planet Maker</h1>
         
         <OpenModalButton>
-          Make a Planet !
+          Make a Planet with HOC !
         </OpenModalButton>
 
-        <ButtonComponent onClick={()=> alert('Esse é um componente puro sem o hoc')}>Make a Planet!</ButtonComponent>
+        <ButtonComponent onClick={()=> alert('Esse é um componente puro sem o hoc')}>Make a Planet Pure!</ButtonComponent>
 
         <div className='wrapper'>
           
