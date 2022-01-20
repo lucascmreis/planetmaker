@@ -1,6 +1,7 @@
-export const makeButtonConfig = ({onClickHandler, type}) => {
+export const makeButtonConfig = ({onClickHandler, onClickSecondaryHandler,  type}) => {
+    const clickHandler = onClickHandler ? onClickHandler : onClickSecondaryHandler
     return {
-        onClick: () => onClickHandler(),
+        onClick: () => clickHandler(),
         type: type
       }
 }

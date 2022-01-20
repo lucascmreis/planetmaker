@@ -1,10 +1,14 @@
 import './styles/global.scss';
 
 import { RoutesComponent } from './routes';
+import { PlanetProvider } from './hooks/usePlanet';
 
 const App = () => {
   return (
-    <RoutesComponent />
+    <PlanetProvider>
+      <RoutesComponent />
+    </PlanetProvider>
+
   );
 }
 
