@@ -1,23 +1,13 @@
 
 import {useState} from 'react'
 
-import {ButtonComponent} from  '../../components/button'
-import {ModalComponent} from '../../components/modal'
-import {TableComponent} from '../../components/table'
-
-import {withButtonConfig} from '../../hoc/withButtonConfig'
-import {withModalConfig} from '../../hoc/withModalConfig'
-import {withTableConfig} from '../../hoc/withTableConfig'
-
-import { makeButtonConfig } from './configs/buttonConfig'
-import { makeModalConfig } from './configs/modalConfig'
-import { tableConfig } from './configs/tableConfig'
+import {ButtonComponent, ModalComponent, TableComponent} from  '../../components/'
+import {withButtonConfig, withModalConfig, withTableConfig} from '../../hoc/'
+import { makeButtonConfig, makeModalConfig, tableConfig } from './configs'
 
 import './style.scss';
 
-
 export const Home = () => {
-
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const onClickHandler = () => {
