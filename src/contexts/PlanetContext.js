@@ -1,5 +1,4 @@
 import {createContext} from 'react'
 
 
-
-export const PlanetContext = createContext({planets:[]})
+export const PlanetContext = createContext()

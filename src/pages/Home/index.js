@@ -3,16 +3,16 @@ import {useState, useEffect} from 'react'
 
 import {ButtonComponent, ModalComponent, TableComponent} from  '../../components/'
 import {withButtonConfig, withModalConfig, withTableConfig} from '../../hoc/'
-import { makeButtonConfig, makeModalConfig, tableConfig } from './configs'
+import { makeButtonConfig, makeModalConfig, makeTableConfig } from './configs'
 
 import {usePlanet} from '../../hooks/usePlanet'
 
 import './style.scss';
 
-export const Home = () => {
+export const Home = (...props) => {
+  console.log('props', props)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const {planets, list} = usePlanet()
-  
   
   useEffect(()=>{
     list()
@@ -44,6 +44,7 @@ export const Home = () => {
   const buttonConfig = makeButtonConfig({onClickHandler, type: 'primary'})
   const secondaryButtonConfig = makeButtonConfig({onClickSecondaryHandler, type: 'danger'})
   const modalConfig = makeModalConfig({handleCancel, handleOk, isModalVisible})
+  const tableConfig = makeTableConfig({dataSource: planets})
 
   const OpenModalButton = withButtonConfig(ButtonComponent, buttonConfig)
   const SecondaryButton = withButtonConfig(ButtonComponent, secondaryButtonConfig)

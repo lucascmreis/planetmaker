@@ -1,6 +1,6 @@
 {
     "planets": [
-      { "id": 1, "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png", "name": "Mars", "description": "red planet", "type": "red" },
-      { "id": 1, "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png", "name": "Earth", "description": "Blue planet", "type": "blue" }
+      { "id": 1, "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png", "name": "Mars", "description": "red planet", "type": ["red"] },
+      { "id": 2, "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png", "name": "Earth", "description": "Blue planet", "type": ["blue"] }
     ]
   }

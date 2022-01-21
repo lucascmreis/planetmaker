@@ -8,8 +8,14 @@ export const PlanetProvider = ({children}) => {
 
     const list = async () => {
        const {data} = await getPlanetService()
-       console.log('list',data)
-       setPlanets(data)
+       const dataSource = data.map(row => {
+           return {
+               key: row.id,
+               ...row
+           }
+       })
+       console.log('list',dataSource)
+       setPlanets(dataSource)
     }
 
     return(
