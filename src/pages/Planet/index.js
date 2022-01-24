@@ -9,17 +9,16 @@ import {usePlanet} from '../../hooks/usePlanet'
 
 import './style.scss';
 
-export const Home = (...props) => {
-  console.log('props', props)
+export const Planet = () => {
+
   const [isModalVisible, setIsModalVisible] = useState(false)
+
   const {planets, list} = usePlanet()
   
   useEffect(()=>{
     list()
   }, [])
   
-  console.log('planets', planets)
-
   const onClickHandler = () => {
     console.log('lets open modal')
     setIsModalVisible(!isModalVisible)
@@ -31,19 +30,11 @@ export const Home = (...props) => {
   }
 
 
-  const handleOk = () => {
-    console.log('modal deu ok')
-    setIsModalVisible(!isModalVisible)
-  }
 
-  const handleCancel = () => {
-    console.log('modal cancelou')
-    setIsModalVisible(!isModalVisible)
-  }
 
   const buttonConfig = makeButtonConfig({onClickHandler, type: 'primary'})
   const secondaryButtonConfig = makeButtonConfig({onClickSecondaryHandler, type: 'danger'})
-  const modalConfig = makeModalConfig({handleCancel, handleOk, isModalVisible})
+  const modalConfig = makeModalConfig({setIsModalVisible, isModalVisible})
   const tableConfig = makeTableConfig({dataSource: planets})
 
   const OpenModalButton = withButtonConfig(ButtonComponent, buttonConfig)
@@ -77,6 +68,7 @@ export const Home = (...props) => {
 
       <Modal>
         <p>to no modal!</p>
+        <p>Aqui vem um form ja já</p>
       </Modal>
     </>
   );

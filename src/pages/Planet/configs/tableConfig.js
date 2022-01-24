@@ -73,7 +73,6 @@ import { Tag, Space } from 'antd'
 //   ];
 
   export const makeTableConfig = ({dataSource}) => {
-    console.log('datasource', dataSource)
     return {
       columns: columns,
       dataSource: dataSource

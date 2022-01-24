@@ -1,10 +1,10 @@
 import { ButtonComponent } from '../../components'
 import { withButtonConfig } from '../../hoc'
-import { makeButtonConfig } from '../Home2/configs/buttonConfig'
+import { makeButtonConfig } from './configs/buttonConfig'
 
 import './styles.scss'
 
-export const Home2 = () => {
+export const Galaxy = () => {
 
     const handleClick = () => {
         console.log('click')
