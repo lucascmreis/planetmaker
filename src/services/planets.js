@@ -9,3 +9,8 @@ export const createPlanetService = async (data) => {
   const response = await api.post('/planets', data)
   return response
 }
+
+export const updatePlanetService = async (data) => {
+  const response = await api.put(`/planets/${data.id}`, data)
+  return response
+}

@@ -1,7 +1,7 @@
 
 import {useState, useEffect} from 'react'
 
-import {ButtonComponent, ModalComponent, TableComponent, FormComponent} from  '../../components/'
+import {ButtonComponent, ModalComponent, TableComponent} from  '../../components/'
 import {ModalForm} from './planet-components/modalForm'
 import {withButtonConfig, withModalConfig, withTableConfig} from '../../hoc/'
 import { makeButtonConfig, makeModalConfig, makeTableConfig } from './configs'
@@ -9,17 +9,14 @@ import { makeButtonConfig, makeModalConfig, makeTableConfig } from './configs'
 import {usePlanet} from '../../hooks/usePlanet'
 
 import './style.scss';
-import { Input } from 'antd'
 
 export const Planet = () => {
-//   let initalPlanetMock = {
-//    imageUrl: "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png", name: "Urano", description: "red planet", type: ["red"] 
-//  }
 
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const [planet, setPlanet] = useState({})
  
-  const {planets, list, create} = usePlanet()
+  const {planets, list, create, update} = usePlanet()
   
   useEffect(()=>{
     list()
@@ -36,21 +33,36 @@ export const Planet = () => {
 
     const newPlanet = {
       ...values, 
-      imageUrl: values.imageUrl || 'https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png'
+      imageUrl: values.imageUrl || 'https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png',
+      type: values.type|| 'any'
     }
-    
-    await create(newPlanet)
+    if(!planet){
+      await create(newPlanet)
+    }else{
+      await update({id: planet.id, ...newPlanet})
+    }
 
     list()
     setIsFormVisible(!isFormVisible);
-         
+  }
+
+  console.log('planet', planet)
+
+  const handleEdit = (data) => {
+    console.log('edit', data)
+    setPlanet(data)
+    setIsFormVisible(!isFormVisible)
+  }
+
+  const handleDelete = (data) => {
+    console.log('delete', data)
   }
 
   const buttonConfig = makeButtonConfig({onClickHandler: makePlanetHandler, type: 'primary'})
  
   const modalConfig = makeModalConfig({setIsVisible: setIsModalVisible , isVisible: isModalVisible, onSubmitHandle})
 
-  const tableConfig = makeTableConfig({dataSource: planets})
+  const tableConfig = makeTableConfig({dataSource: planets, handleEdit, handleDelete})
 
   const OpenModalButton = withButtonConfig(ButtonComponent, buttonConfig)
   const Modal = withModalConfig(ModalComponent, modalConfig )
@@ -65,7 +77,6 @@ export const Planet = () => {
           <OpenModalButton>
             Make a Planet with HOC !
           </OpenModalButton>
-
 
           <ButtonComponent onClick={()=> alert('Esse é um componente puro sem o hoc')}>
             Make a Planet Pure!
@@ -84,7 +95,8 @@ export const Planet = () => {
       <ModalForm
         visible={isFormVisible}
         setIsModalVisible={setIsFormVisible}
-        onCreate={onSubmitHandle}
+        onFinish={onSubmitHandle}
+        initialValues={planet}
         onCancel={() => {
           setIsFormVisible(!isFormVisible);
         }}

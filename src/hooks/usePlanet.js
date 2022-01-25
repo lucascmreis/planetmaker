@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { useState } from "react/cjs/react.development"
 import { PlanetContext } from "../contexts/PlanetContext"
-import { getPlanetService, createPlanetService } from "../services/planets"
+import { getPlanetService, createPlanetService, updatePlanetService } from "../services/planets"
 
 export const PlanetProvider = ({children}) => {
     const [planets, setPlanets] = useState([])
@@ -21,11 +21,19 @@ export const PlanetProvider = ({children}) => {
         const response = await createPlanetService(newData)
         return response
     }
+    
+    const update = async (data) => {
+        console.log(data)
+        const response = await updatePlanetService(data)
+        console.log( 'response update', response)
+        return response
+    }
 
     const value = {
         planets, 
         list,
-        create
+        create, 
+        update
     }
 
     return(

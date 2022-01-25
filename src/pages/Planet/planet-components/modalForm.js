@@ -1,22 +1,24 @@
 import {  Modal, Form, Input } from 'antd';
+import { useEffect } from 'react/cjs/react.development';
 import { withModalConfig } from '../../../hoc';
 import { makeModalConfig } from '../configs';
 
-export const ModalForm = ({ visible, onCreate, setIsModalVisible }) => {
+export const ModalForm = ({ visible, onFinish, initialValues, setIsModalVisible }) => {
+
     const [form] = Form.useForm();
-    const onSubmitHandle = () => {
+
+    const onOk = () => {
         form
         .validateFields()
         .then((values) => {
-            form.resetFields();
-            onCreate(values);
+          onFinish(values);
         })
         .catch((info) => {
             console.log('Validate Failed:', info);
         });
-        }
-
-  const modalConfig = makeModalConfig({isVisible: visible, setIsVisible: setIsModalVisible, onOk: onSubmitHandle, okText: 'make it!'})
+    }
+    
+  const modalConfig = makeModalConfig({isVisible: visible, setIsVisible: setIsModalVisible, onOk, okText: 'make it!'})
   
   const ModalComponent = withModalConfig(Modal, modalConfig )
   
@@ -26,9 +28,7 @@ export const ModalForm = ({ visible, onCreate, setIsModalVisible }) => {
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{
-          modifier: 'public',
-        }}
+        initialValues={initialValues}
       >
         <Form.Item
           name="name"
@@ -72,32 +72,3 @@ export const ModalForm = ({ visible, onCreate, setIsModalVisible }) => {
     </ModalComponent>
   );
 };
-
-// const CollectionsPage = () => {
-//   const [visible, setVisible] = useState(false);
-
-//   const onCreate = (values) => {
-//     console.log('Received values of form: ', values);
-//     setVisible(false);
-//   };
-
-//   return (
-//     <div>
-//       <Button
-//         type="primary"
-//         onClick={() => {
-//           setVisible(true);
-//         }}
-//       >
-//         New Collection
-//       </Button>
-//       <CollectionCreateForm
-//         visible={visible}
-//         onCreate={onCreate}
-//         onCancel={() => {
-//           setVisible(false);
-//         }}
-//       />
-//     </div>
-//   );
-// };

@@ -2,57 +2,24 @@
   "planets": [
     {
       "id": 1,
-      "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png",
       "name": "Mars",
       "description": "red planet",
-      "type": [
-        "red"
-      ]
+      "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png",
+      "type": "red"
     },
     {
       "id": 2,
-      "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
       "name": "Earth",
       "description": "Blue planet",
-      "type": [
-        "blue"
-      ]
-    },
-    {
-      "id": 3,
-      "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png",
-      "name": "Venus",
-      "description": "red planet",
-      "type": [
-        "red"
-      ]
-    },
-    {
-      "id": 4,
-      "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png",
-      "name": "Urano",
-      "description": "red planet",
-      "type": [
-        "red"
-      ]
+      "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
+      "type": "blue"
     },
     {
       "name": "Neptune",
       "description": "test",
+      "type": "blue",
       "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
       "id": 5
-    },
-    {
-      "name": "Pizza",
-      "description": "teste X",
-      "imageUrl": "https://www.pngkit.com/png/full/161-1619596_pizza-planet-by-connormckee-pizza-planet-toy-story.png",
-      "id": 6
-    },
-    {
-      "name": "X",
-      "description": "desc",
-      "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
-      "id": 7
     }
   ]
 }
