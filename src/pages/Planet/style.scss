@@ -10,19 +10,12 @@
     justify-content: center;
 }
 
-.header-container {
+.subheader-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-bottom: 2rem;
-  margin-top: 5rem;
 
-  h1 {
-    font-size: 3rem;
-    margin: 0 auto;
-    padding: 0 4rem;
-    color: var(--yellow-500);
-  }
 
   button{
       margin: 1rem;
@@ -33,7 +26,7 @@
   
 }
 
-.wrapper {
+.subheader-wrapper {
    width: 100%;
    margin: 2rem auto;
 

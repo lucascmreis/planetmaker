@@ -5,7 +5,7 @@
       "name": "Mars",
       "description": "red planet",
       "imageUrl": "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png",
-      "type": "blue"
+      "type": "red"
     },
     {
       "id": 2,
@@ -27,6 +27,13 @@
       "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
       "type": "any",
       "id": 6
+    },
+    {
+      "name": "Pizza",
+      "description": "planet pizza",
+      "imageUrl": "https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png",
+      "type": "any",
+      "id": 7
     }
   ]
 }

@@ -77,9 +77,8 @@ export const Planet = () => {
   return(
     <>
       <div className='container'>
-        <header className='header-container'>
-          <h1>Planet Maker</h1>
-          
+        <header className='subheader-container'>
+         
           <OpenModalButton>
             Make a Planet with HOC !
           </OpenModalButton>
@@ -89,7 +88,7 @@ export const Planet = () => {
           </ButtonComponent>
         </header>
 
-        <div className='wrapper'>
+        <div className='subheader-wrapper'>
           <Table />
         </div>
       </div>
