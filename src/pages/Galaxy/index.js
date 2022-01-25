@@ -17,7 +17,7 @@ export const Galaxy = () => {
         <>
             <div className="container">
                 <header className='header-container'>
-                    <h1>Second Home</h1>
+                    <h1>Galaxy</h1>
                     <OpenModalButton>
                         Open Modal
                     </OpenModalButton>

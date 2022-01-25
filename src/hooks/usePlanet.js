@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { useState } from "react/cjs/react.development"
 import { PlanetContext } from "../contexts/PlanetContext"
-import { getPlanetService } from "../services/planets"
+import { getPlanetService, createPlanetService } from "../services/planets"
 
 export const PlanetProvider = ({children}) => {
     const [planets, setPlanets] = useState([])
@@ -14,12 +14,22 @@ export const PlanetProvider = ({children}) => {
                ...row
            }
        })
-       console.log('list',dataSource)
        setPlanets(dataSource)
     }
 
+    const create = async (newData) => {
+        const response = await createPlanetService(newData)
+        return response
+    }
+
+    const value = {
+        planets, 
+        list,
+        create
+    }
+
     return(
-        <PlanetContext.Provider value={{planets, list}} >
+        <PlanetContext.Provider value={value} >
             {children}
         </PlanetContext.Provider>
     )

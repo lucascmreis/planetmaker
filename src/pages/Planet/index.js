@@ -1,44 +1,58 @@
 
 import {useState, useEffect} from 'react'
 
-import {ButtonComponent, ModalComponent, TableComponent} from  '../../components/'
+import {ButtonComponent, ModalComponent, TableComponent, FormComponent} from  '../../components/'
+import {ModalForm} from './planet-components/modalForm'
 import {withButtonConfig, withModalConfig, withTableConfig} from '../../hoc/'
 import { makeButtonConfig, makeModalConfig, makeTableConfig } from './configs'
 
 import {usePlanet} from '../../hooks/usePlanet'
 
 import './style.scss';
+import { Input } from 'antd'
 
 export const Planet = () => {
+//   let initalPlanetMock = {
+//    imageUrl: "https://i.pinimg.com/originals/8c/36/39/8c363969b243519fd89ed4713434378e.png", name: "Urano", description: "red planet", type: ["red"] 
+//  }
 
   const [isModalVisible, setIsModalVisible] = useState(false)
-
-  const {planets, list} = usePlanet()
+  const [isFormVisible, setIsFormVisible] = useState(false)
+ 
+  const {planets, list, create} = usePlanet()
   
   useEffect(()=>{
     list()
   }, [])
   
-  const onClickHandler = () => {
-    console.log('lets open modal')
-    setIsModalVisible(!isModalVisible)
+  const makePlanetHandler = () => {
+    console.log('lets make a planet')
+    setIsFormVisible(!isFormVisible)
   }
 
-  const onClickSecondaryHandler = () => {
-    console.log('secondary ')
-    setIsModalVisible(!isModalVisible)
+  const onSubmitHandle = async (values) => {
+
+    console.log('Received values of form: ', values);
+
+    const newPlanet = {
+      ...values, 
+      imageUrl: values.imageUrl || 'https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png'
+    }
+    
+    await create(newPlanet)
+
+    list()
+    setIsFormVisible(!isFormVisible);
+         
   }
 
+  const buttonConfig = makeButtonConfig({onClickHandler: makePlanetHandler, type: 'primary'})
+ 
+  const modalConfig = makeModalConfig({setIsVisible: setIsModalVisible , isVisible: isModalVisible, onSubmitHandle})
 
-
-
-  const buttonConfig = makeButtonConfig({onClickHandler, type: 'primary'})
-  const secondaryButtonConfig = makeButtonConfig({onClickSecondaryHandler, type: 'danger'})
-  const modalConfig = makeModalConfig({setIsModalVisible, isModalVisible})
   const tableConfig = makeTableConfig({dataSource: planets})
 
   const OpenModalButton = withButtonConfig(ButtonComponent, buttonConfig)
-  const SecondaryButton = withButtonConfig(ButtonComponent, secondaryButtonConfig)
   const Modal = withModalConfig(ModalComponent, modalConfig )
   const Table = withTableConfig(TableComponent, tableConfig)
 
@@ -52,9 +66,6 @@ export const Planet = () => {
             Make a Planet with HOC !
           </OpenModalButton>
 
-          <SecondaryButton>
-            This is a sec button with HOC !
-          </SecondaryButton>
 
           <ButtonComponent onClick={()=> alert('Esse é um componente puro sem o hoc')}>
             Make a Planet Pure!
@@ -68,8 +79,18 @@ export const Planet = () => {
 
       <Modal>
         <p>to no modal!</p>
-        <p>Aqui vem um form ja já</p>
       </Modal>
+
+      <ModalForm
+        visible={isFormVisible}
+        setIsModalVisible={setIsFormVisible}
+        onCreate={onSubmitHandle}
+        onCancel={() => {
+          setIsFormVisible(!isFormVisible);
+        }}
+      />
+
+
     </>
   );
 }
