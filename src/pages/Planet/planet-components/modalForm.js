@@ -1,27 +1,34 @@
+import {useEffect} from 'react'
+
 import {  Modal, Form, Input } from 'antd';
-import { useEffect } from 'react/cjs/react.development';
 import { withModalConfig } from '../../../hoc';
 import { makeModalConfig } from '../configs';
 
 export const ModalForm = ({ visible, onFinish, initialValues, setIsModalVisible }) => {
+  const [form] = Form.useForm();
 
-    const [form] = Form.useForm();
+  const onOk = () => {
+    form
+    .validateFields()
+    .then((values) => {
+      form.resetFields()
+      onFinish(values)
+    })
+    .catch((info) => {
+        console.log('Validate Failed:', info);
+    });
+  }
 
-    const onOk = () => {
-        form
-        .validateFields()
-        .then((values) => {
-          onFinish(values);
-        })
-        .catch((info) => {
-            console.log('Validate Failed:', info);
-        });
-    }
-    
   const modalConfig = makeModalConfig({isVisible: visible, setIsVisible: setIsModalVisible, onOk, okText: 'make it!'})
   
   const ModalComponent = withModalConfig(Modal, modalConfig )
   
+  useEffect(() => {
+    //form.setFieldsValue(initialValues)
+    form.resetFields()
+    console.log('effect', initialValues)
+   }, [form, initialValues])
+
   return (
     <ModalComponent>
       <Form

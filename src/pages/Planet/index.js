@@ -15,28 +15,36 @@ export const Planet = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isFormVisible, setIsFormVisible] = useState(false)
   const [planet, setPlanet] = useState({})
- 
+
   const {planets, list, create, update} = usePlanet()
   
   useEffect(()=>{
     list()
   }, [])
+
+  useEffect(()=>{
+    if(!isFormVisible){
+      setPlanet({})
+      console.log('flush')
+    }
+  },[isFormVisible])
   
   const makePlanetHandler = () => {
     console.log('lets make a planet')
+    setPlanet({})
     setIsFormVisible(!isFormVisible)
   }
 
   const onSubmitHandle = async (values) => {
 
     console.log('Received values of form: ', values);
-
+  
     const newPlanet = {
       ...values, 
       imageUrl: values.imageUrl || 'https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png',
       type: values.type|| 'any'
     }
-    if(!planet){
+    if(!planet.id){
       await create(newPlanet)
     }else{
       await update({id: planet.id, ...newPlanet})
@@ -45,8 +53,6 @@ export const Planet = () => {
     list()
     setIsFormVisible(!isFormVisible);
   }
-
-  console.log('planet', planet)
 
   const handleEdit = (data) => {
     console.log('edit', data)
