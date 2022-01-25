@@ -7,7 +7,7 @@ export const Header = () => {
                 <h1>Planet Maker</h1>
                 <nav>
                     <a href='/'>Planets</a>
-                    <a href='/galaxies'>Galaxies</a>
+                    <a href='/galaxy'>Galaxies</a>
                 </nav>
             </div>
         </div>

@@ -21,24 +21,13 @@ export const Planet = () => {
   useEffect(()=>{
     list()
   }, [])
-
-  useEffect(()=>{
-    if(!isFormVisible){
-      setPlanet({})
-      console.log('flush')
-    }
-  },[isFormVisible])
   
   const makePlanetHandler = () => {
-    console.log('lets make a planet')
     setPlanet({})
     setIsFormVisible(!isFormVisible)
   }
 
-  const onSubmitHandle = async (values) => {
-
-    console.log('Received values of form: ', values);
-  
+  const onSubmitHandle = async (values) => { 
     const newPlanet = {
       ...values, 
       imageUrl: values.imageUrl || 'https://purepng.com/public/uploads/large/purepng.com-earthearthplanetglobethird-planet-from-the-sun-1411526987924uaycc.png',
@@ -49,13 +38,11 @@ export const Planet = () => {
     }else{
       await update({id: planet.id, ...newPlanet})
     }
-
     list()
     setIsFormVisible(!isFormVisible);
   }
 
   const handleEdit = (data) => {
-    console.log('edit', data)
     setPlanet(data)
     setIsFormVisible(!isFormVisible)
   }
@@ -65,9 +52,7 @@ export const Planet = () => {
   }
 
   const buttonConfig = makeButtonConfig({onClickHandler: makePlanetHandler, type: 'primary'})
- 
   const modalConfig = makeModalConfig({setIsVisible: setIsModalVisible , isVisible: isModalVisible, onSubmitHandle})
-
   const tableConfig = makeTableConfig({dataSource: planets, handleEdit, handleDelete})
 
   const OpenModalButton = withButtonConfig(ButtonComponent, buttonConfig)
